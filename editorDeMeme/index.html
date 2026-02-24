@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/css/normalize.css">
+    <link rel="stylesheet" href="./styles/css/styles.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Federo&family=Open+Sans:wght@300..800&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-straight/css/uicons-solid-straight.css'>
+    <script src="https://kit.fontawesome.com/21765ba68c.js" crossorigin="anonymous"></script>
+    
+    <title>Editor de Memes</title>
+</head>
+
+<body class="modo-oscuro">
+    <header>
+        <h1 id="main-title">Generador de Memes</h1>
+        <nav class="header-buttons">
+            <button type="button" id="btn-image-panel"><i class="fi fi-ss-file-image"></i> Imagen</button>
+            <button type="button" id="btn-text-panel"><i class="fa-sharp fa-solid fa-a"></i> Texto</button>
+            <button type="button" id="btn-theme-mode"><i class="fa-regular fa-lightbulb"></i> Modo Claro/Oscuro</button>
+        </nav>  
+    </header>  
+    
+    <main> <!--CONTENEDOR DE IMAGEN-->
+        <section id="meme-container-section" aria-label="Editor de meme"> 
+            <div id="meme-canvas">
+                <p id="text-top">TOP TEXT</p>
+                <div class="image-container">
+                    <img id="meme-image" src="" alt="Previsualización del meme">
+                </div>  
+                <p id="text-bottom">BOTTOM TEXT</p>
+            </div>
+            <button type="button" id="btn-download">Descargar Meme</button>
+        </section>
+    </main> 
+
+    <aside id="image-editor-panel"> <!--PANEL PARA EDITAR IMAGEN-->
+        <div class="panel-header">
+            <h3>IMAGEN</h3>
+        </div>
+        
+        <div class="control-group">  
+            <h5>URL</h5>
+            <input id="url-input" type="text" placeholder="Pega el link de tu imagen aquí" aria-label="URL de la imagen">
+        </div> 
+
+        <div class="control-group">  
+            <h5>FONDO</h5>
+            <div class="input-flex">
+                <input id="bg-color-input" type="color" value="#ffffff" aria-label="Color de fondo">
+                <select id="bg-blend-mode" aria-label="Modo de mezcla de fondo">
+                    <option value="none">Ninguno</option>
+                    <option value="lighten">Aclarar</option>
+                    <option value="darken">Oscurecer</option>
+                    <option value="difference">Diferencia</option>
+                    <option value="luminosity">Luminosidad</option>
+                    <option value="multiply">Multiplicar</option>
+                </select>
+            </div>
+        </div> 
+
+        <div class="control-group">  
+            <h5 class="filter-title">FILTROS</h5>
+            <div class="range-controls">
+                <label for="brightness-slider">BRILLO</label>
+                <input id="brightness-slider" type="range" min="0" max="1" step="0.1" value="1">
+
+                <label for="opacity-slider">OPACIDAD</label>
+                <input id="opacity-slider" type="range" min="0" max="1" step="0.1" value="1">
+
+                <label for="contrast-slider">CONTRASTE</label>
+                <input id="contrast-slider" type="range" min="100" max="1000" step="1" value="100">
+
+                <label for="blur-slider">DESENFOQUE</label>
+                <input id="blur-slider" type="range" min="0" max="10" step="0.1" value="0">
+
+                <label for="grayscale-slider">ESCALA DE GRISES</label>
+                <input id="grayscale-slider" type="range" min="0" max="100" step="1" value="0">
+
+                <label for="sepia-slider">SEPIA</label>
+                <input id="sepia-slider" type="range" min="0" max="100" step="1" value="0">
+
+                <label for="hue-slider">HUE (Tono)</label>
+                <input id="hue-slider" type="range" min="0" max="359" step="1" value="0">
+
+                <label for="saturate-slider">SATURADO</label>
+                <input id="saturate-slider" type="range" min="100" max="1000" step="10" value="100">
+
+                <label for="invert-slider">NEGATIVO</label>
+                <input id="invert-slider" type="range" min="0" max="1" step="0.1" value="0">
+            </div>
+            <button type="button" id="btn-reset-filters">Restablecer filtros</button>
+        </div>  
+    </aside>
+
+    <aside id="text-editor-panel"> <!--PANEL PARA EDITAR TEXTO-->
+        <h3 class="panel-header">TEXTO</h3>
+        
+        <div class="control-group">
+            <h5>SUPERIOR</h5>
+            <input id="top-text-input" type="text" placeholder="TOP TEXT" aria-label="Texto superior">
+            <div class="checkbox-group">
+                <input id="no-top-text-checkbox" type="checkbox">
+                <label for="no-top-text-checkbox">Sin texto superior</label>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <h5>INFERIOR</h5>
+            <input id="bottom-text-input" type="text" placeholder="BOTTOM TEXT" aria-label="Texto inferior">
+            <div class="checkbox-group">
+                <input id="no-bottom-text-checkbox" type="checkbox">
+                <label for="no-bottom-text-checkbox">Sin texto inferior</label>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <h5>FUENTE</h5>
+            <select id="font-family-select" aria-label="Tipo de fuente">
+                <option value="Arial">Arial</option>
+                <option value="Arial Black">Arial Black</option>
+                <option value="American Typewriter">American Typewriter</option>
+                <option value="Andale Mono">Andale Mono</option>
+                <option value="Comic Sans MS">Comic Sans MS</option>
+                <option value="Helvetica">Helvetica</option>
+                <option value="Impact">Impact</option>
+                <option value="Verdana">Verdana</option>
+                <option value="Times New Roman">Times New Roman</option>
+            </select>
+            
+            <div class="font-controls">
+                <input type="number" id="font-size-input" min="12" max="60" value="40" aria-label="Tamaño de letra">
+                <div class="alignment-buttons">
+                    <button type="button" id="btn-align-left" aria-label="Alinear a la izquierda"><i class="fa-solid fa-align-left"></i></button>
+                    <button type="button" id="btn-align-center" aria-label="Alinear al centro"><i class="fa-solid fa-align-center"></i></button>
+                    <button type="button" id="btn-align-right" aria-label="Alinear a la derecha"><i class="fa-solid fa-align-right"></i></button>
+                </div>
+            </div>
+        </div>  
+
+        <div class="control-group color-flex">
+            <div>
+                <h5>COLOR</h5>
+                <input id="text-color-input" type="color" value="#000000" aria-label="Color del texto">
+            </div>
+            <div>
+                <h5>FONDO</h5>
+                <input id="text-bg-color-input" type="color" value="#ffffff" aria-label="Color de fondo del texto">
+            </div>
+        </div>
+
+        <div class="checkbox-group">
+            <input id="transparent-bg-checkbox" type="checkbox">
+            <label for="transparent-bg-checkbox">Fondo transparente</label>
+        </div>
+
+        <div class="control-group">
+            <h5>CONTORNO</h5>
+            <div class="outline-buttons">
+                <button type="button" id="btn-outline-none">Ninguno</button>
+                <button type="button" id="btn-outline-light">Claro</button>
+                <button type="button" id="btn-outline-dark">Oscuro</button>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <h5>ESPACIADO</h5>
+            <input id="padding-input" type="number" min="10" max="50" value="19" aria-label="Espaciado">
+        </div>
+
+        <div class="control-group">
+            <h5>INTERLINEADO</h5>
+            <select id="line-height-select" aria-label="Interlineado">
+                <option value="0.8">0.8</option>
+                <option value="1">1</option>
+                <option value="1.2">1.2</option>
+                <option value="1.5">1.5</option>
+                <option value="2">2</option>
+                <option value="2.5">2.5</option>
+            </select>
+        </div>
+    </aside>
+     <!-- Librería para convertir un elemento HTML en imagen (PNG, JPG, etc) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js" integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA==" crossorigin="anonymous"></script>
+    <!-- Librería para permitir descargar archivos generados en el navegador -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ==" crossorigin="anonymous"></script>
+    
+    <script src="main.js"></script>
+</body>
+</html>
